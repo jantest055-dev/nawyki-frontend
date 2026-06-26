@@ -241,7 +241,7 @@ function getLvl(xp){return LEVELS.find(l=>xp>=l.min&&xp<l.max)||LEVELS[5];}
 
 // ── API LAYER ─────────────────────────────────────────────────────────────────
 // Podmień po deployu na Railway:
-const API_URL="https://nawyki-backedn.onrender.com";
+const API_URL="https://nawyki-backedn-1.onrender.com";
 
 const getToken=()=>{try{return localStorage.getItem("nw_token")||null}catch{return null}};
 const setToken=t=>{try{localStorage.setItem("nw_token",t||"")}catch{}};
@@ -690,8 +690,8 @@ function AuthScreen({onAuth}){
             <div>
               <span style={{color:"var(--dim)",fontSize:12,fontFamily:"'Rajdhani',sans-serif",letterSpacing:1}}>
                 Problem z kontem? </span>
-              <a href="mailto:kontakt@dyscyplinawojownika.pl" style={{color:"var(--gold)",fontSize:12,fontFamily:"'Rajdhani',sans-serif",letterSpacing:1}}>
-                kontakt@dyscyplinawojownika.pl
+              <a href="mailto:apkawojownika@gmail.com" style={{color:"var(--gold)",fontSize:12,fontFamily:"'Rajdhani',sans-serif",letterSpacing:1}}>
+                apkawojownika@gmail.com
               </a>
             </div>
           </div>
