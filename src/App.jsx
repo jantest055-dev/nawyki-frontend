@@ -1697,9 +1697,9 @@ function Paywall({onUnlock,onClose}){
 // ── SHARE STREAK ──────────────────────────────────────────────────────────────
 function ShareStreakModal({streak,name,xp,onClose}){
   const lvl=getLvl(xp);
-  const text=`🔥 Dzień ${streak} z rzędu!\n⚔️ ${name} — poziom ${lvl.level} ${lvl.name}\n💪 ${xp} XP zdobyte\n\nNawyki Wojownika — dyscyplinawojownika.pl`;
+  const text=`🔥 Dzień ${streak} z rzędu!\n⚔️ ${name} — poziom ${lvl.level} ${lvl.name}\n💪 ${xp} XP zdobyte\n\nDyscyplina Wojownika — dyscyplinawojownika.pl`;
   function share(){
-    if(navigator.share){navigator.share({title:"Nawyki Wojownika",text});}
+    if(navigator.share){navigator.share({title:"Dyscyplina Wojownika",text});}
     else{navigator.clipboard.writeText(text).then(()=>alert("Skopiowano do schowka!"));}
   }
   return(
@@ -1713,7 +1713,7 @@ function ShareStreakModal({streak,name,xp,onClose}){
           <div style={{fontFamily:"'Rajdhani',sans-serif",fontSize:14,color:"var(--dim)",letterSpacing:3,marginTop:4,fontWeight:600}}>DNI Z RZĘDU</div>
           <div style={{fontFamily:"'Bebas Neue',sans-serif",fontSize:22,color:"var(--white)",letterSpacing:2,marginTop:8}}>{name.toUpperCase()}</div>
           <div style={{fontFamily:"'Rajdhani',sans-serif",fontSize:12,color:"var(--gold)",letterSpacing:2,marginTop:4,fontWeight:700}}>LVL {lvl.level} {lvl.name.toUpperCase()} · {xp} XP</div>
-          <div style={{fontFamily:"'Rajdhani',sans-serif",fontSize:11,color:"var(--dim)",letterSpacing:3,marginTop:12,fontWeight:600}}>NAWYKI WOJOWNIKA · DYSCYPLINAWOJOWNIKA.PL</div>
+          <div style={{fontFamily:"'Rajdhani',sans-serif",fontSize:11,color:"var(--dim)",letterSpacing:3,marginTop:12,fontWeight:600}}>DYSCYPLINA WOJOWNIKA · DYSCYPLINAWOJOWNIKA.PL</div>
         </div>
 
         <button onClick={share} style={{
