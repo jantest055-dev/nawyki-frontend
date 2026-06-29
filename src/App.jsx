@@ -1749,6 +1749,11 @@ export default function App(){
 
   // Przy starcie sprawdź token i załaduj dane
   useEffect(()=>{
+    // Obsługa ?verified=1 — potwierdzenie emaila
+    if(new URLSearchParams(window.location.search).get("verified")==="1"){
+      window.history.replaceState({},"","/");
+      alert("✅ Konto aktywowane! Możesz się teraz zalogować.");
+    }
     const token=getToken();
     if(!token){setAppLoading(false);return;}
     api("/me").then(me=>{
