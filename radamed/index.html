@@ -1,0 +1,535 @@
+<title>Radamed po konsultacji</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F4F6F3; --surface:#FFFFFF; --sunk:#E9EEEA; --ink:#172421; --muted:#5B6B66; --line:#D7DFDA;
+  --accent:#1E6F5C; --accent-soft:#DCEEE7; --flag:#9A5A14; --flag-soft:#F6EAD9;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#101715; --surface:#172120; --sunk:#1D2927; --ink:#E4ECE8; --muted:#9BABA5; --line:#2C3A37;
+    --accent:#63C2A6; --accent-soft:#1D3A33; --flag:#E2A560; --flag-soft:#3A2B1A;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101715; --surface:#172120; --sunk:#1D2927; --ink:#E4ECE8; --muted:#9BABA5; --line:#2C3A37;
+  --accent:#63C2A6; --accent-soft:#1D3A33; --flag:#E2A560; --flag-soft:#3A2B1A;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 var(--body);padding-inline:20px;padding-block:0 80px}
+.page{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.015em;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5.4vw,58px);line-height:1.04}
+h2{font-size:clamp(26px,3.4vw,36px);line-height:1.12}
+h3{font-size:20px;line-height:1.25}
+p{margin:0;max-width:66ch}
+a{color:var(--accent)}
+.mono{font-family:var(--mono);font-size:13px}
+.eyebrow{font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+
+/* header */
+header.top{padding-block:56px 36px;display:grid;gap:18px;border-bottom:1px solid var(--line)}
+.lede{font-size:20px;color:var(--muted);max-width:60ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--display);font-size:14px;color:var(--muted)}
+.facts b{color:var(--ink);font-weight:700}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding-block:10px}
+nav.toc a{font-family:var(--display);font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;padding:6px 12px;border-radius:999px;white-space:nowrap}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--sunk);outline:none}
+nav.toc a span{font-family:var(--mono);color:var(--accent);margin-right:6px}
+
+section{padding-block:64px 8px;display:grid;gap:26px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:10px}
+
+/* key insight */
+.insight{border-left:3px solid var(--accent);padding:4px 0 4px 18px;font-size:18px}
+.flag{background:var(--flag-soft);color:var(--ink);border-radius:10px;padding:14px 18px;font-size:15px;line-height:1.55;display:grid;gap:4px}
+.flag strong{color:var(--flag);font-family:var(--display);font-size:13px;letter-spacing:.07em;text-transform:uppercase}
+
+/* timeline */
+.flow{display:grid;gap:0;border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:120px 1fr;gap:18px;padding-block:18px;border-bottom:1px solid var(--line)}
+.when{display:grid;gap:6px;align-content:start}
+.chip{display:inline-block;font-family:var(--mono);font-size:13px;background:var(--sunk);border-radius:6px;padding:3px 8px;justify-self:start;font-variant-numeric:tabular-nums}
+.id{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.what{display:grid;gap:6px}
+.what p{font-size:16px}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{font-family:var(--display);font-size:12px;font-weight:500;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--muted)}
+.tag.svc{border-color:var(--accent);color:var(--accent)}
+.tag.mkt{border-color:var(--flag);color:var(--flag)}
+.step.hl{background:var(--accent-soft);margin-inline:-14px;padding-inline:14px;border-radius:10px;border-bottom-color:transparent}
+.branch{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding-block:18px;border-bottom:1px solid var(--line)}
+.branch .b{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:6px;align-content:start}
+.branch .b p{font-size:15px}
+.branch-label{grid-column:1/-1;display:flex;gap:10px;align-items:center;font-family:var(--display);font-size:14px;color:var(--muted)}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.rule{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:6px;align-content:start}
+.rule p{font-size:15px}
+
+table.data{border-collapse:collapse;width:100%;font-size:15px;min-width:600px}
+table.data th,table.data td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.data th{font-family:var(--display);font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.scroll{overflow-x:auto}
+
+/* mail */
+.mailgrid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
+.client{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.client-head{padding:14px 18px;border-bottom:1px solid var(--line);display:grid;gap:3px;font-family:var(--display);font-size:14px}
+.client-head .subj{font-size:17px;font-weight:700}
+.client-head .pre{color:var(--muted)}
+.client-body{background:#EAF0EE;overflow-x:auto}
+.client-body .wrap{margin:0 auto}
+.notes{display:grid;gap:18px;position:sticky;top:70px}
+.note{display:grid;grid-template-columns:28px 1fr;gap:10px}
+.note .n{font-family:var(--mono);font-size:12px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center}
+.note p{font-size:15px;line-height:1.5}
+.palette{display:flex;gap:6px;flex-wrap:wrap}
+.sw{display:grid;gap:4px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.sw i{display:block;width:44px;height:30px;border-radius:6px;border:1px solid var(--line)}
+
+/* actions */
+.actions{display:grid;gap:20px}
+.act{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:18px 32px}
+.act-head{grid-column:1/-1;display:grid;gap:8px}
+.act h4{font-family:var(--display);font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 6px;font-weight:500}
+.act ul{margin:0;padding-left:18px;font-size:15.5px;line-height:1.55;display:grid;gap:6px}
+.act .why{grid-column:1/-1;border-top:1px solid var(--line);padding-top:16px;font-size:15.5px}
+
+/* loom */
+.script{display:grid;border-top:1px solid var(--line)}
+.scene{display:grid;grid-template-columns:110px 1fr 1fr;gap:18px;padding-block:16px;border-bottom:1px solid var(--line)}
+.scene p{font-size:15.5px}
+.scene .say{font-style:italic}
+
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);display:grid;gap:6px}
+
+@media (max-width:820px){
+  .mailgrid{grid-template-columns:1fr}
+  .notes{position:static}
+  .act{grid-template-columns:1fr}
+  .branch{grid-template-columns:1fr}
+  .scene{grid-template-columns:1fr;gap:6px}
+}
+@media (max-width:520px){
+  body{font-size:16px}
+  .step{grid-template-columns:1fr;gap:8px}
+  .when{grid-auto-flow:column;justify-content:start;align-items:center}
+}
+@media (max-width:620px){
+  .client-body .wrap{width:100%!important}
+  .client-body .px{padding-left:22px!important;padding-right:22px!important}
+  .client-body .stack{display:block!important;width:100%!important;border-right:0!important}
+  .client-body .h1{font-size:26px!important;line-height:32px!important}
+}
+@media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+</style>
+
+<div class="page">
+
+<header class="top">
+  <div class="eyebrow">Zadanie rekrutacyjne &middot; marketing automation</div>
+  <h1>Radamed: co dzieje się po tym, jak pacjent zapłaci za konsultację</h1>
+  <p class="lede">Schemat automatyzacji po zakupie, projekt jednego maila, trzy działania do wdrożenia i scenariusz nagrania. Wszystko pisane pod telemedycynę, bo Radamed sprzedaje konsultacje, a nie produkty z koszyka.</p>
+  <div class="facts">
+    <span><b>Usługi:</b> e-recepta, L4, skierowania, leczenie otyłości, psychiatria</span>
+    <span><b>Model:</b> konsultacja telefoniczna po formularzu medycznym</span>
+    <span><b>Dostępność:</b> 24/7, „nawet w 15 minut”</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Spis treści">
+  <a href="#automatyzacja"><span>1</span>Automatyzacja</a>
+  <a href="#mail"><span>2</span>Projekt maila</a>
+  <a href="#dzialania"><span>3</span>Trzy działania</a>
+  <a href="#loom"><span>4</span>Scenariusz Looma</a>
+  <a href="#zalozenia"><span>&middot;</span>Założenia</a>
+</nav>
+
+<!-- ============ 1 ============ -->
+<section id="automatyzacja">
+  <div class="sec-head">
+    <div class="eyebrow">Zadanie 1</div>
+    <h2>Schemat automatyzacji po zakupie</h2>
+  </div>
+
+  <p class="insight">Pacjent Radamed nie kupuje produktu. Kupuje załatwioną sprawę: receptę, zwolnienie albo skierowanie. Dlatego pierwsze maile mają dowieźć tę sprawę do końca. Sprzedaż przychodzi dopiero wtedy, gdy pacjent ma kolejny realny powód, żeby wrócić: kończy mu się lek, zbliża się kontrola albo zaczyna się sezon infekcji.</p>
+
+  <div class="flag">
+    <strong>Ograniczenia, które kształtują cały schemat</strong>
+    <span><b>Zakaz reklamy leków na receptę</b> (art. 57 Prawa farmaceutycznego): żaden mail marketingowy nie wymienia nazwy leku ani nie zachęca do jego zakupu. Promujemy usługę, czyli konsultację.</span>
+    <span><b>Dane o zdrowiu</b> to szczególna kategoria danych (art. 9 RODO). Informacja, że ktoś korzystał z psychiatrii albo antykoncepcji awaryjnej, nie może trafić do segmentacji marketingowej bez wyraźnej zgody. Do potwierdzenia z IOD i prawnikiem, bo nie jestem prawnikiem.</span>
+    <span><b>Temat maila widać na ekranie blokady.</b> Tematy i preheadery nigdy nie zdradzają specjalizacji ani nazwy leku.</span>
+  </div>
+
+  <div>
+    <div class="flow" role="list">
+      <div class="step" role="listitem">
+        <div class="when"><span class="chip">T+0</span><span class="id">M0</span></div>
+        <div class="what">
+          <h3>Płatność przyjęta: przygotuj się do rozmowy</h3>
+          <p>Potwierdzenie z tym, co się zaraz wydarzy: lekarz zadzwoni z numeru X, telefon ma być włączony, dobrze mieć pod ręką listę przyjmowanych leków i wcześniejsze wyniki badań.</p>
+          <p class="muted">Cel: mniej nieodebranych połączeń. Każde z nich to koszt pracy lekarza i ryzyko reklamacji.</p>
+          <div class="meta"><span class="tag svc">serwisowy</span><span class="tag">e-mail + SMS</span><span class="tag">wszyscy</span></div>
+        </div>
+      </div>
+      <div class="step" role="listitem">
+        <div class="when"><span class="chip">zdarzenie</span><span class="id">M1</span></div>
+        <div class="what">
+          <h3>Lekarz nie mógł się dodzwonić</h3>
+          <p>Wyzwalacz: status „nieodebrane” w systemie. SMS z przyciskiem „oddzwońcie teraz” i ze wskazaniem, kiedy nastąpi kolejna próba.</p>
+          <div class="meta"><span class="tag svc">serwisowy</span><span class="tag">SMS, potem e-mail</span></div>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-label"><span class="chip">zdarzenie</span> Konsultacja zamknięta. Ścieżka zależy od wyniku.</div>
+        <div class="b">
+          <span class="id">M2a &middot; e-recepta</span>
+          <h3>Jak zrealizować receptę</h3>
+          <p>Kod przychodzi SMS-em i jest w IKP. Recepta ważna 30 dni, lek pełnopłatny. Na końcu ocena w jednym kliknięciu i zapis na przypomnienie o kontynuacji. Ten mail jest zaprojektowany w zadaniu 2.</p>
+        </div>
+        <div class="b">
+          <span class="id">M2b &middot; L4</span>
+          <h3>Zwolnienie jest już w ZUS</h3>
+          <p>e-ZLA trafia do ZUS i do pracodawcy bez udziału pacjenta. Mail przypomina, że nie trzeba nic nikomu wysyłać, i że w czasie zwolnienia pacjent powinien przebywać pod adresem podanym do kontroli.</p>
+        </div>
+        <div class="b">
+          <span class="id">M2c &middot; brak wskazań</span>
+          <h3>Lekarz nie wystawił dokumentu</h3>
+          <p>Spokojne wyjaśnienie, dlaczego lekarz może odmówić, co zrobić dalej (POZ, wizyta stacjonarna) i jak wygląda zwrot zgodnie z regulaminem. Zero marketingu. To jest moment, w którym łatwo stracić zaufanie.</p>
+        </div>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="when"><span class="chip">T+24h</span><span class="id">M3</span></div>
+        <div class="what">
+          <h3>Ocena konsultacji (tylko jeśli nie było jej w M2)</h3>
+          <p>Ocena 1–5 na własnej stronie. Prośbę o opinię w Google dostają <em>wszyscy</em>, nie tylko zadowoleni. Filtrowanie próśb według oceny („review gating”) łamie zasady Google, a przy opiniach konsumenckich nie warto dawać UOKiK pretekstu.</p>
+          <p class="muted">Oceny 1–2 trafiają do zespołu obsługi jako zgłoszenie, a nie do kolejnego maila.</p>
+          <div class="meta"><span class="tag svc">serwisowy</span><span class="tag">e-mail</span></div>
+        </div>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="when"><span class="chip">T+3d</span><span class="id">M4</span></div>
+        <div class="what">
+          <h3>Jak się czujesz po pierwszych dniach?</h3>
+          <p>Tylko w ścieżkach, w których leczenie trwa: leczenie otyłości, psychiatria, leki przewlekłe. Krótki check-in, informacja, co zrobić przy działaniach niepożądanych, i link do konsultacji kontrolnej. Treść zatwierdza lekarz.</p>
+          <div class="meta"><span class="tag svc">serwisowy</span><span class="tag">ścieżki przewlekłe</span></div>
+        </div>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="when"><span class="chip">T+7d</span><span class="id">M5</span></div>
+        <div class="what">
+          <h3>Zgoda na newsletter, jeśli jej brakuje</h3>
+          <p>Jedna propozycja z konkretną obietnicą: raz w miesiącu, sezonowe przypomnienia zdrowotne, bez reklam leków. Double opt-in i centrum preferencji, w którym pacjent sam wybiera tematy.</p>
+          <div class="meta"><span class="tag mkt">marketingowy</span><span class="tag">poza segmentem wrażliwym</span></div>
+        </div>
+      </div>
+
+      <div class="step hl" role="listitem">
+        <div class="when"><span class="chip">zapas −10d</span><span class="id">M6</span></div>
+        <div class="what">
+          <h3>Kończy Ci się lek: umów kontynuację</h3>
+          <p>Główny mechanizm powrotów. Data liczona z ilości leku na recepcie (np. 90 dni kuracji to przypomnienie w 80. dniu). Wysyłana tylko do osób, które zaznaczyły „przypomnij mi” w M2a. Treść jest neutralna: „zbliża się termin kontynuacji leczenia”, bez nazwy leku.</p>
+          <p class="muted">To usługa dla pacjenta, a przy okazji najczystszy powód do kolejnego zakupu, jaki ma Radamed.</p>
+          <div class="meta"><span class="tag svc">serwisowy, za zgodą</span><span class="tag">e-mail + SMS</span></div>
+        </div>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="when"><span class="chip">T+30d</span><span class="id">M7</span></div>
+        <div class="what">
+          <h3>Zapisz nas na następny raz</h3>
+          <p>Dla jednorazowych spraw (L4, pojedyncza recepta) i tylko przy zgodzie marketingowej. Przypomnienie, że Radamed działa w nocy i w weekendy, gdy przychodnia jest zamknięta, plus kod na kolejną konsultację z terminem ważności 60 dni.</p>
+          <div class="meta"><span class="tag mkt">marketingowy</span><span class="tag">e-mail</span></div>
+        </div>
+      </div>
+
+      <div class="step" role="listitem">
+        <div class="when"><span class="chip">T+120d</span><span class="id">M8</span></div>
+        <div class="what">
+          <h3>Ostatnia wiadomość, potem cisza</h3>
+          <p>Jedna próba reaktywacji. Brak otwarcia oznacza wyłączenie z mailingu marketingowego (sunset), żeby chronić reputację domeny i nie męczyć ludzi, którzy nie chcą tych maili.</p>
+          <div class="meta"><span class="tag mkt">marketingowy</span><span class="tag">sunset</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Reguły globalne</h3>
+  <div class="rules">
+    <div class="rule"><span class="eyebrow">Segment wrażliwy</span><p>Psychiatria i antykoncepcja awaryjna dostają wyłącznie wiadomości serwisowe. Marketing tylko po osobnej, świadomej zgodzie.</p></div>
+    <div class="rule"><span class="eyebrow">Limit częstotliwości</span><p>Najwyżej 1 wiadomość marketingowa na 7 dni. Serwisowe bez limitu, bo pacjent na nie czeka.</p></div>
+    <div class="rule"><span class="eyebrow">Wyjście ze ścieżki</span><p>Nowy zakup resetuje ścieżkę. Wypisanie się i reklamacja natychmiast wstrzymują marketing.</p></div>
+    <div class="rule"><span class="eyebrow">Neutralne tematy</span><p>„Twoja konsultacja jest zakończona”, a nie „Recepta na…”. Ta sama zasada dotyczy SMS-ów i powiadomień push.</p></div>
+  </div>
+
+  <h3>Dane potrzebne do uruchomienia</h3>
+  <div class="scroll">
+    <table class="data">
+      <thead><tr><th>Zdarzenie</th><th>Uruchamia</th><th>Uwagi</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">consultation_paid</td><td>M0</td><td>typ usługi, kanał pozyskania</td></tr>
+        <tr><td class="mono">doctor_call_missed</td><td>M1</td><td>numer próby</td></tr>
+        <tr><td class="mono">consultation_closed</td><td>M2a/b/c, M3</td><td>wynik: recepta / L4 / skierowanie / brak wskazań</td></tr>
+        <tr><td class="mono">refill_opt_in</td><td>M6</td><td>liczba dni kuracji. Dana o zdrowiu, przechowywana tylko za zgodą.</td></tr>
+        <tr><td class="mono">marketing_consent</td><td>M5, M7, M8</td><td>osobno e-mail i SMS (Prawo komunikacji elektronicznej)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="mail">
+  <div class="sec-head">
+    <div class="eyebrow">Zadanie 2</div>
+    <h2>Projekt maila M2a: „Twoja konsultacja jest zakończona”</h2>
+    <p class="muted">Ten mail, bo otwiera go prawie każdy pacjent i to on decyduje, czy Radamed zapamięta się jako „ci, u których wszystko było jasne”. Kolory to propozycja: bez dostępu do księgi znaku Radamed trzeba je przed wdrożeniem podmienić na firmowe.</p>
+  </div>
+
+  <div class="mailgrid">
+    <div class="client" aria-label="Podgląd maila">
+      <div class="client-head">
+        <span class="subj">Twoja konsultacja jest zakończona. Co dalej</span>
+        <span class="pre">Wszystko, czego potrzebujesz w aptece. Zajmie Ci to minutę.</span>
+        <span class="mono muted">Od: Radamed &lt;pacjent@…&gt; &middot; koncepcja</span>
+      </div>
+      <div class="client-body">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#EAF0EE;">
+<tr><td align="center" style="padding:28px 10px;">
+<table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;">
+  <tr><td class="px" style="padding:0 40px 18px 40px;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:700;letter-spacing:-0.3px;color:#16302B;">radamed<span style="color:#1E6F5C;">.</span></td></tr>
+  <tr><td style="background:#FFFFFF;border-radius:14px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr><td class="px" style="padding:36px 40px 0 40px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+          <td style="background:#E3F1EC;border-radius:40px;padding:6px 14px;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;color:#1E6F5C;">&#10003;&nbsp; Konsultacja zakończona</td>
+        </tr></table>
+      </td></tr>
+      <tr><td class="px" style="padding:20px 40px 0 40px;font-family:Georgia,'Times New Roman',serif;">
+        <h1 class="h1" style="margin:0;font-size:30px;line-height:37px;font-weight:400;color:#16302B;letter-spacing:0;">Anno, Twoja e&#8209;recepta jest już w&nbsp;systemie.</h1>
+      </td></tr>
+      <tr><td class="px" style="padding:14px 40px 0 40px;font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:25px;color:#3C514C;">
+        Lek. Marta Kowalczyk zakończyła konsultację 28&nbsp;września o&nbsp;21:47. Kod do e&#8209;recepty przyszedł SMS&#8209;em na numer kończący się na <strong style="color:#16302B;">&middot;&middot;&middot;&nbsp;412</strong>. Znajdziesz go też w&nbsp;Internetowym Koncie Pacjenta.
+      </td></tr>
+      <tr><td class="px" style="padding:28px 40px 0 40px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #D5E2DD;border-radius:12px;">
+          <tr>
+            <td class="stack" width="50%" valign="top" style="padding:18px 20px;border-right:1px solid #D5E2DD;font-family:Helvetica,Arial,sans-serif;">
+              <div style="font-size:11px;letter-spacing:0.8px;text-transform:uppercase;color:#6B807A;">Ważna do</div>
+              <div style="font-size:22px;line-height:30px;font-weight:700;color:#16302B;">28 października</div>
+              <div style="font-size:13px;color:#6B807A;">30 dni od wystawienia</div>
+            </td>
+            <td class="stack" width="50%" valign="top" style="padding:18px 20px;font-family:Helvetica,Arial,sans-serif;">
+              <div style="font-size:11px;letter-spacing:0.8px;text-transform:uppercase;color:#6B807A;">W aptece podaj</div>
+              <div style="font-size:22px;line-height:30px;font-weight:700;color:#16302B;">PESEL + 4&#8209;cyfrowy kod</div>
+              <div style="font-size:13px;color:#6B807A;">z SMS-a od Ministerstwa Zdrowia</div>
+            </td>
+          </tr>
+        </table>
+      </td></tr>
+      <tr><td class="px" style="padding:30px 40px 0 40px;font-family:Helvetica,Arial,sans-serif;">
+        <div style="font-size:13px;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;color:#1E6F5C;padding-bottom:12px;">Co teraz</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr><td width="34" valign="top" style="padding:0 0 14px 0;"><div style="width:24px;height:24px;border-radius:12px;background:#16302B;color:#FFFFFF;font-size:13px;line-height:24px;text-align:center;font-weight:700;">1</div></td>
+            <td valign="top" style="padding:2px 0 14px 0;font-size:15px;line-height:22px;color:#3C514C;"><strong style="color:#16302B;">Idź do dowolnej apteki</strong> albo sprawdź dostępność leku na <a href="https://www.ktomalek.pl" style="color:#1E6F5C;">ktomalek.pl</a>, zanim wyjdziesz z domu.</td></tr>
+          <tr><td width="34" valign="top" style="padding:0 0 14px 0;"><div style="width:24px;height:24px;border-radius:12px;background:#16302B;color:#FFFFFF;font-size:13px;line-height:24px;text-align:center;font-weight:700;">2</div></td>
+            <td valign="top" style="padding:2px 0 14px 0;font-size:15px;line-height:22px;color:#3C514C;"><strong style="color:#16302B;">Podaj PESEL i&nbsp;kod.</strong> Farmaceuta zobaczy receptę od razu.</td></tr>
+          <tr><td width="34" valign="top" style="padding:0;"><div style="width:24px;height:24px;border-radius:12px;background:#16302B;color:#FFFFFF;font-size:13px;line-height:24px;text-align:center;font-weight:700;">3</div></td>
+            <td valign="top" style="padding:2px 0 0 0;font-size:15px;line-height:22px;color:#3C514C;"><strong style="color:#16302B;">Zapłać pełną cenę leku.</strong> Recepty z&nbsp;konsultacji prywatnej nie są refundowane przez NFZ.</td></tr>
+        </table>
+      </td></tr>
+      <tr><td class="px" style="padding:30px 40px 0 40px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+          <td style="background:#1E6F5C;border-radius:10px;"><span style="display:inline-block;padding:15px 26px;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;color:#FFFFFF;">Zobacz podsumowanie konsultacji</span></td>
+        </tr></table>
+        <div style="padding-top:10px;font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#6B807A;">Brak SMS-a? Kod jest też w&nbsp;podsumowaniu.</div>
+      </td></tr>
+      <tr><td class="px" style="padding:36px 40px 0 40px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #E3EBE8;"><tr><td style="padding-top:26px;font-family:Helvetica,Arial,sans-serif;">
+          <div style="font-size:16px;font-weight:700;color:#16302B;">Jak oceniasz rozmowę z&nbsp;lekarzem?</div>
+          <div style="font-size:14px;color:#6B807A;padding:4px 0 14px 0;">Jedno kliknięcie. Czytamy każdą odpowiedź.</div>
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td style="padding-right:6px;"><span style="display:block;width:44px;height:40px;line-height:40px;text-align:center;border:1px solid #D5E2DD;border-radius:8px;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;color:#16302B;">1</span></td>
+            <td style="padding-right:6px;"><span style="display:block;width:44px;height:40px;line-height:40px;text-align:center;border:1px solid #D5E2DD;border-radius:8px;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;color:#16302B;">2</span></td>
+            <td style="padding-right:6px;"><span style="display:block;width:44px;height:40px;line-height:40px;text-align:center;border:1px solid #D5E2DD;border-radius:8px;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;color:#16302B;">3</span></td>
+            <td style="padding-right:6px;"><span style="display:block;width:44px;height:40px;line-height:40px;text-align:center;border:1px solid #D5E2DD;border-radius:8px;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;color:#16302B;">4</span></td>
+            <td><span style="display:block;width:44px;height:40px;line-height:40px;text-align:center;background:#E3F1EC;border:1px solid #BFDCD2;border-radius:8px;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;color:#1E6F5C;">5</span></td>
+          </tr></table>
+        </td></tr></table>
+      </td></tr>
+      <tr><td class="px" style="padding:30px 40px 36px 40px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F7F6;border-radius:12px;"><tr><td style="padding:20px 22px;font-family:Helvetica,Arial,sans-serif;">
+          <div style="font-size:15px;font-weight:700;color:#16302B;">Bierzesz ten lek dłużej niż miesiąc?</div>
+          <div style="font-size:14px;line-height:21px;color:#3C514C;padding-top:4px;">Przypomnimy Ci o&nbsp;kontynuacji, zanim skończy się opakowanie. Bez spamu, jedna wiadomość.</div>
+          <div style="padding-top:12px;font-size:14px;font-weight:700;color:#1E6F5C;text-decoration:underline;">Tak, przypomnij mi &rarr;</div>
+        </td></tr></table>
+      </td></tr>
+    </table>
+  </td></tr>
+  <tr><td class="px" style="padding:24px 40px 0 40px;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:19px;color:#6B807A;">
+    Źle się czujesz lub objawy się nasilają? Zadzwoń pod <strong>112</strong> albo skontaktuj się z&nbsp;nocną i&nbsp;świąteczną opieką zdrowotną. Konsultacja online nie zastępuje pomocy w&nbsp;nagłych przypadkach.<br><br>
+    To wiadomość serwisowa dotycząca Twojej konsultacji, dlatego dostajesz ją niezależnie od zgód marketingowych.<br>Radamed &middot; radamed.pl
+  </td></tr>
+</table>
+</td></tr>
+</table>
+      </div>
+    </div>
+
+    <aside class="notes" aria-label="Uzasadnienie projektu">
+      <div class="note"><span class="n">1</span><p><b>Temat bez nazwy leku.</b> Mail może się pojawić na ekranie blokady albo we wspólnej skrzynce. „Konsultacja zakończona” niczego nie zdradza.</p></div>
+      <div class="note"><span class="n">2</span><p><b>Najpierw status, potem instrukcja.</b> Pierwsza myśl pacjenta to „czy się udało?”. Odpowiada na nią zielona plakietka i nagłówek, zanim pacjent przeczyta cokolwiek innego.</p></div>
+      <div class="note"><span class="n">3</span><p><b>Dwie liczby, które naprawdę są potrzebne:</b> data ważności i to, co podać w aptece. Takie informacje pacjenci najczęściej sprawdzają w obsłudze klienta.</p></div>
+      <div class="note"><span class="n">4</span><p><b>Uczciwa informacja o braku refundacji.</b> Lepiej, żeby pacjent dowiedział się o tym z maila niż przy kasie w aptece, bo wtedy obwini Radamed.</p></div>
+      <div class="note"><span class="n">5</span><p><b>Jedna prośba o działanie, która nie sprzedaje leku.</b> Zapis na przypomnienie o kontynuacji buduje zgodę pod M6, czyli główne źródło powrotów.</p></div>
+      <div class="note"><span class="n">6</span><p><b>Styl:</b> spokojna zieleń i szeryfowy nagłówek zamiast „szpitalnego” błękitu. Ma przypominać list od lekarza rodzinnego, a nie powiadomienie z banku.</p></div>
+      <div class="palette" aria-label="Paleta maila">
+        <div class="sw"><i style="background:#16302B"></i>#16302B</div>
+        <div class="sw"><i style="background:#1E6F5C"></i>#1E6F5C</div>
+        <div class="sw"><i style="background:#E3F1EC"></i>#E3F1EC</div>
+        <div class="sw"><i style="background:#EAF0EE"></i>#EAF0EE</div>
+        <div class="sw"><i style="background:#6B807A"></i>#6B807A</div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="dzialania">
+  <div class="sec-head">
+    <div class="eyebrow">Zadanie 3</div>
+    <h2>Trzy działania, po jednym z każdego obszaru</h2>
+    <p class="muted">Liczby przy celach to moje hipotezy do sprawdzenia, a nie dane Radamed. Punktem odniesienia powinny być 4 tygodnie pomiaru przed startem.</p>
+  </div>
+
+  <div class="actions">
+    <article class="act">
+      <div class="act-head">
+        <span class="eyebrow">Lojalizacja</span>
+        <h3>Program „Kontynuacja”: przypomnienie o kończącym się leku i pakiet konsultacji</h3>
+      </div>
+      <div>
+        <h4>Co wdrażamy</h4>
+        <ul>
+          <li>Pole „przypomnij mi o kontynuacji” przy zamknięciu konsultacji i w mailu M2a (zgoda na przetwarzanie danych o zdrowiu w tym jednym celu).</li>
+          <li>Automat M6: e-mail i SMS 10 dni przed końcem zapasu z linkiem do konsultacji kontynuacyjnej z wypełnionym już formularzem.</li>
+          <li>Pakiet 3 konsultacji kontynuacyjnych płatny z góry, taniej niż 3 pojedyncze, z opcją „ten sam lekarz, jeśli jest dostępny”.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Jak mierzymy</h4>
+        <ul>
+          <li>Odsetek pacjentów z drugą konsultacją w ciągu 90 dni (główny wskaźnik).</li>
+          <li>Konwersja z M6 na zakup.</li>
+          <li>Udział pakietów w przychodzie ze ścieżek przewlekłych.</li>
+          <li>Grupa kontrolna 10% bez M6, żeby zmierzyć realny przyrost, a nie powroty, które i tak by nastąpiły.</li>
+        </ul>
+      </div>
+      <p class="why"><b>Dlaczego:</b> w telemedycynie konkurencja sprzedaje to samo (e-recepta, L4) i walczy ceną oraz szybkością. Rabat da się skopiować w jeden dzień. Wygoda, czyli „pamiętają za mnie, formularz już wypełniony, ten sam lekarz”, jest trudniejsza do skopiowania. Przy lekach przewlekłych powrót i tak nastąpi, pytanie tylko, czy do Radamed.</p>
+    </article>
+
+    <article class="act">
+      <div class="act-head">
+        <span class="eyebrow">Newsletter</span>
+        <h3>„Kalendarz zdrowia”: jeden mail miesięcznie, sezonowy, bez reklamy leków</h3>
+      </div>
+      <div>
+        <h4>Co wdrażamy</h4>
+        <ul>
+          <li>Kalendarz tematów: październik to szczepienia i sezon infekcji, zima to „kiedy konsultacja online wystarczy, a kiedy trzeba iść do lekarza”, wiosna to alergie, przed wakacjami podróż i apteczka.</li>
+          <li>Stała rubryka „Lekarz odpowiada”: pytanie od pacjenta i odpowiedź podpisana przez lekarza. Buduje wiarygodność i daje treści na SEO.</li>
+          <li>Centrum preferencji: pacjent sam wybiera tematy. Nie segmentujemy według historii konsultacji w obszarach wrażliwych.</li>
+          <li>Na końcu każdego wydania konsultacja jako usługa („lekarz dostępny także w nocy”), nigdy konkretny lek.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Jak mierzymy</h4>
+        <ul>
+          <li>Klikalność (CTR) i przychód na wysłany mail.</li>
+          <li>Odsetek wypisów na wydanie. Jeśli rośnie, tniemy częstotliwość, a nie treść.</li>
+          <li>Odsetek zapisów w M5.</li>
+          <li>Testy A/B tematów na 20% bazy, zwycięska wersja idzie do reszty.</li>
+        </ul>
+      </div>
+      <p class="why"><b>Dlaczego:</b> potrzeba konsultacji przychodzi nagle (gorączka w sobotę, kończące się tabletki w święta). Newsletter nie ma jej wywołać. Ma sprawić, że w tym momencie pacjent pomyśli o Radamed, a nie wpisze „recepta online” w Google i nie kliknie w konkurencję. Pacjent pozyskany ponownie przez mail jest dużo tańszy niż kolejne kliknięcie w reklamę.</p>
+    </article>
+
+    <article class="act">
+      <div class="act-head">
+        <span class="eyebrow">PPC</span>
+        <h3>Google Ads ustawione pod intencję i porę dnia, optymalizowane na zakończone konsultacje</h3>
+      </div>
+      <div>
+        <h4>Co wdrażamy</h4>
+        <ul>
+          <li>Osobne kampanie według intencji: „L4 online”, „e-recepta online”, „lekarz online w nocy/weekend”, marka. Każda z własnym landingiem z ceną widoczną od razu.</li>
+          <li>Harmonogram stawek: wyższe tam, gdzie przychodnie są zamknięte (wieczory, weekendy, święta), i rano w dni robocze dla L4. To hipoteza do sprawdzenia na danych z konta.</li>
+          <li>Import konwersji offline: optymalizujemy na „konsultacja zakończona z wystawionym dokumentem” z wartością marży, a nie na „płatność”. Zwroty i odmowy nie uczą algorytmu.</li>
+          <li>Consent Mode v2, bez którego w UE nie działa remarketing ani pełny pomiar.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Jak mierzymy</h4>
+        <ul>
+          <li>Koszt zakończonej konsultacji (a nie koszt płatności).</li>
+          <li>Zwrot z wydatków na reklamę (ROAS) liczony na marży, osobno dla każdej kampanii.</li>
+          <li>Udział w wyświetleniach na frazy z marką. Warto sprawdzić, czy konkurencja nie licytuje nazwy „radamed”.</li>
+        </ul>
+      </div>
+      <p class="why"><b>Dlaczego:</b> ruch „recepta online” jest drogi i konkurencja kupuje go tak samo. Przewagę daje nie wyższa stawka, tylko lepszy sygnał dla algorytmu. Optymalizacja na płatność premiuje też przypadki, które kończą się odmową i zwrotem.</p>
+      <div class="flag" style="grid-column:1/-1">
+        <strong>Zgodność</strong>
+        <span>Reklamy i landingi nie mogą wymieniać leków na receptę (art. 57 Prawa farmaceutycznego). Zasady Google dotyczące zdrowia i telemedycyny różnią się w zależności od kraju i mogą wymagać certyfikacji. Przed startem trzeba je sprawdzić dla Polski, bo ich aktualna wersja nie została tu zweryfikowana. Obietnica „w 15 minut” w reklamie musi być zgodna z rzeczywistym czasem, inaczej to ryzyko sprawy o wprowadzanie w błąd.</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section id="loom">
+  <div class="sec-head">
+    <div class="eyebrow">Zadanie 4</div>
+    <h2>Scenariusz nagrania, około 5 minut</h2>
+    <p class="muted">Nagrywasz na tle tej strony, przewijając ją. Poniżej: czas, co widać na ekranie i co mówisz. Mów własnymi słowami, a tekst traktuj jako ściągę.</p>
+  </div>
+  <div class="script">
+    <div class="scene"><span class="chip">0:00–0:30</span><p>Nagłówek strony.</p><p class="say">„Punkt wyjścia: co Radamed właściwie sprzedaje? To nie sklep, tylko telemedycyna, więc »po zakupie« oznacza po konsultacji. To zmienia wszystko: nie promujemy leków, a dane o zdrowiu wymagają szczególnej ostrożności.”</p></div>
+    <div class="scene"><span class="chip">0:30–2:00</span><p>Sekcja 1, od M0 do rozgałęzienia, potem M6.</p><p class="say">„Pierwsze maile domykają sprawę pacjenta. Mniej nieodebranych telefonów, jasna instrukcja do apteki. Sercem jest M6, czyli przypomnienie o kończącym się leku. To usługa, na którą pacjent sam się zapisuje, i najczystszy powód do powrotu.”</p></div>
+    <div class="scene"><span class="chip">2:00–2:30</span><p>Reguły globalne.</p><p class="say">„Segment wrażliwy dostaje tylko wiadomości serwisowe, a tematy nigdy nie zdradzają, na co ktoś się leczy. Opinię w Google zbieram od wszystkich, bo filtrowanie tylko zadowolonych łamie zasady Google.”</p></div>
+    <div class="scene"><span class="chip">2:30–3:30</span><p>Sekcja 2, przejście po adnotacjach 1–6.</p><p class="say">„Projektuję mail, który otwiera prawie każdy. Najpierw status, potem dwie informacje potrzebne w aptece, uczciwie o braku refundacji i jedna prośba: zapis na przypomnienie. Kolory to propozycja, bo księga znaku nie była dostępna.”</p></div>
+    <div class="scene"><span class="chip">3:30–4:40</span><p>Sekcja 3, po kolei trzy karty.</p><p class="say">„Lojalizacja przez wygodę, a nie rabat, bo rabat skopiuje każdy. Newsletter, który ma sprawić, że pomyślisz o Radamed w sobotę o 23. I Google Ads optymalizowane na zakończone konsultacje zamiast płatności.”</p></div>
+    <div class="scene"><span class="chip">4:40–5:00</span><p>Sekcja „Założenia”.</p><p class="say">„Czego nie wiem: waszych danych, stosu narzędzi i marż. Chętnie zweryfikuję te hipotezy na liczbach.”</p></div>
+  </div>
+</section>
+
+<section id="zalozenia">
+  <div class="sec-head">
+    <div class="eyebrow">Założenia i luki</div>
+    <h2>Czego nie wiem i co trzeba sprawdzić</h2>
+  </div>
+  <div class="rules">
+    <div class="rule"><span class="eyebrow">Dane</span><p>Brak dostępu do liczb: wskaźnik powrotów, udział ścieżek przewlekłych, koszt pozyskania pacjenta. Wszystkie cele są hipotezami.</p></div>
+    <div class="rule"><span class="eyebrow">Marka</span><p>Strona radamed.pl nie była dostępna podczas przygotowania. Kolory i ton maila to propozycja do dopasowania.</p></div>
+    <div class="rule"><span class="eyebrow">Prawo</span><p>Art. 57 Prawa farmaceutycznego, art. 9 RODO i Prawo komunikacji elektronicznej opisuję z perspektywy marketingu, nie prawnej. Każdą ścieżkę trzeba zatwierdzić z IOD.</p></div>
+    <div class="rule"><span class="eyebrow">Procesy</span><p>Zakładam, że system medyczny udostępnia zdarzenia (nieodebrane połączenie, wynik konsultacji). Jeśli nie, M1 i M2 wymagają integracji jako pierwszy krok.</p></div>
+  </div>
+</section>
+
+<footer>
+  <span>Koncepcja przygotowana na potrzeby rekrutacji. Nie jest to oficjalna komunikacja Radamed.</span>
+  <span>Źródła o usługach Radamed: radamed.pl (opisy w wynikach wyszukiwania), art. 57 Prawa farmaceutycznego, pacjent.gov.pl (zasady e-recept).</span>
+</footer>
+
+</div>
