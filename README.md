@@ -1,16 +1,42 @@
-# React + Vite
+# Nawyki Wojownika
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+90-dniowy program budowania dyscypliny i nawyków. PWA, mobile-first, interfejs po polsku, doba liczona wg Europe/Warsaw.
 
-Currently, two official plugins are available:
+**Stack:** React 19 + Vite + TypeScript + Tailwind 4, Supabase (Auth, Postgres + RLS, Edge Functions), PWA (vite-plugin-pwa).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Model:** wyłącznie płatny. Po rejestracji użytkownik aktywuje dostęp jednorazowym kodem (90 dni od aktywacji, wszystkie funkcje). Bez aktywnego dostępu widzi tylko ekran aktywacji i ustawienia (eksport/usunięcie danych).
 
-## React Compiler
+## Struktura
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+src/
+  lib/          env (zod), klient Supabase, walidacja, czas PL, wywołania Edge Functions
+  auth/         sesja (AuthProvider)
+  access/       stan dostępu (AccessProvider) — tylko UX, ochrona to RLS
+  routes/       strażnicy tras
+  pages/        logowanie, rejestracja, reset hasła, aktywacja, ustawienia (RODO), prywatność
+supabase/
+  migrations/   schemat, RLS, funkcje (has_active_access, redeem_access_code, generator kodów)
+  functions/    redeem-code, delete-account, export-data (Deno)
+  templates/    szablony maili auth
+  tests/        testy RLS/uprawnień na lokalnym Postgresie
+docs/
+  SETUP.md      wdrożenie, ustawienia Auth, generowanie kodów
+  SECURITY.md   macierz RLS i zapytania do weryfikacji
+```
 
-## Expanding the ESLint configuration
+## Skrypty
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run dev        # development (wymaga .env.local — patrz .env.example)
+npm run build      # typecheck + build produkcyjny
+npm run lint
+npm test           # testy jednostkowe (vitest)
+./supabase/tests/run.sh   # testy RLS (lokalny Postgres)
+```
+
+## Pozostałości starego prototypu
+
+Nieużywane i do usunięcia: `src/App.jsx`, `src/main.jsx`, `src/App.css`, `src/assets/`, `public/icons.svg` oraz puste pliki `cd`, `dir`, `git`, `switch`, `vercel` w katalogu głównym. Treść lekcji i zadań z `src/App.jsx` może się przydać w kolejnych etapach.
+
+Szczegóły: [docs/SETUP.md](docs/SETUP.md), [docs/SECURITY.md](docs/SECURITY.md).

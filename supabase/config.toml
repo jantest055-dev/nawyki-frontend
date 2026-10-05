@@ -1,0 +1,42 @@
+# Konfiguracja lokalnego Supabase (supabase start). W projekcie produkcyjnym
+# te same ustawienia trzeba ustawić w panelu — patrz docs/SETUP.md.
+project_id = "nawyki-wojownika"
+
+[api]
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+major_version = 17
+
+[auth]
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["http://localhost:5173/**"]
+jwt_expiry = 3600
+enable_refresh_token_rotation = true
+enable_signup = true
+minimum_password_length = 10
+
+[auth.email]
+enable_signup = true
+enable_confirmations = true
+double_confirm_changes = true
+secure_password_change = true
+
+[auth.email.template.confirmation]
+subject = "Potwierdź konto — Nawyki Wojownika"
+content_path = "./supabase/templates/confirmation.html"
+
+[auth.email.template.recovery]
+subject = "Reset hasła — Nawyki Wojownika"
+content_path = "./supabase/templates/recovery.html"
+
+[functions.redeem-code]
+verify_jwt = true
+
+[functions.delete-account]
+verify_jwt = true
+
+[functions.export-data]
+verify_jwt = true
